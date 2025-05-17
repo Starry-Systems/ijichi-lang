@@ -71,3 +71,16 @@ class FunctionCall(ASTNode):
     def __init__(self, name, args):
         self.name = name  # str
         self.args = args  # list of Expression
+    class ListLiteralNode:
+    def __init__(self, elements):
+        self.elements = elements
+
+class DictLiteralNode:
+    def __init__(self, pairs):
+        self.pairs = pairs  # list of (key, value) pairs
+
+class IndexAccessNode:
+    def __init__(self, container, index):
+        self.container = container
+        self.index = index
+
