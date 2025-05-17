@@ -6,6 +6,35 @@ class Parser:
         '+': 4, '-': 4,
         '*': 5, '/': 5,
     }
+def parse_list_literal(self):
+    # assumes current token is '['
+    elements = []
+    self.advance()  # consume '['
+    while self.current_token.type != 'RIGHT_BRACKET':
+        elements.append(self.parse_expression())
+        if self.current_token.type == 'COMMA':
+            self.advance()
+        else:
+            break
+    self.expect('RIGHT_BRACKET')
+    return ListLiteralNode(elements)
+
+def parse_dict_literal(self):
+    # assumes current token is '{'
+    pairs = []
+    self.advance()  # consume '{'
+    while self.current_token.type != 'RIGHT_BRACE':
+        key = self.parse_expression()
+        self.expect('COLON')
+        value = self.parse_expression()
+        pairs.append((key, value))
+        if self.current_token.type == 'COMMA':
+            self.advance()
+        else:
+            break
+    self.expect('RIGHT_BRACE')
+    return DictLiteralNode(pairs)
+
 
     UNARY_OPS = {'-', 'not', '!'}
 
