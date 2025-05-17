@@ -18,6 +18,15 @@ def parse_list_literal(self):
             break
     self.expect('RIGHT_BRACKET')
     return ListLiteralNode(elements)
+    
+def parse_index_access(self, base_expr):
+    while self.current_token.type == 'LEFT_BRACKET':
+        self.advance()
+        index_expr = self.parse_expression()
+        self.expect('RIGHT_BRACKET')
+        base_expr = IndexAccessNode(base_expr, index_expr)
+    return base_expr
+
 
 def parse_dict_literal(self):
     # assumes current token is '{'
