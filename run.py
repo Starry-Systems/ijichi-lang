@@ -1,6 +1,18 @@
 from lexer.py import Lexer         
 from parser.py import Parser       
 from compiler.py import Compiler, Program  # Compiler and AST classes from compiler.py
+import sys
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: python run.py <source_file>")
+        exit(1)
+
+    with open(sys.argv[1], "r") as f:
+        source = f.read()
+
+    main(source)
+
 
 def main(source_code):
     # Lexing
@@ -32,3 +44,5 @@ if __name__ == "__main__":
     main()
     """
     main(source)
+
+
