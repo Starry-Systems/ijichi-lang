@@ -2,6 +2,35 @@ from ast_nodes import *
 
 class RuntimeError(Exception):
     pass
+import os
+from lexer import Lexer
+from parser import Parser
+
+class Executor:
+    ...
+
+    def exec_ImportStatement(self, node, env):
+        filename = node.module_name
+        if not filename.endswith(".iji"):
+            filename += ".iji"
+        if not os.path.exists(filename):
+            raise RuntimeError(f"Import failed: File '{filename}' not found")
+
+        # Load and parse the imported file
+        with open(filename, "r") as f:
+            source = f.read()
+
+        tokens = Lexer(source).tokenize()
+        ast = Parser(tokens).parse()
+
+        # Execute in its own environment
+        import_env = Environment(parent=env)
+        self.execute(ast, import_env)
+
+        # Optionally: copy public symbols into current env
+        for name, value in import_env.vars.items():
+            if not name.startswith("_"):  # convention: underscore = private
+                env.define(name, value)
 
 
 class Environment:
