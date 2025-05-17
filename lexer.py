@@ -27,8 +27,17 @@ class Lexer:
         ('RPAREN',       r'\)'),
         ('COMMA',        r','),
         ('COLON',        r':'),
-        ('UNKNOWN',      r'.'),                     # Any other character
+        ('UNKNOWN',      r'.'), 
+      
+        LBRACKET = 'LEFT_BRACKET'   # [
+        RBRACKET = 'RIGHT_BRACKET'  # ]
+        LBRACE = 'LEFT_BRACE'       # {
+        RBRACE = 'RIGHT_BRACE'      # }
+        COLON = 'COLON'             # :
+        COMMA = 'COMMA'             # ,
+# Any other character
     ]
+    
 
     def __init__(self, code):
         self.code = code
