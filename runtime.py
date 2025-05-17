@@ -163,6 +163,20 @@ class Executor:
     def _register_builtins(self):
         self.global_env.define("true", True)
         self.global_env.define("false", False)
+    def exec_ListLiteralNode(self, node, env):
+    return [self.execute(e, env) for e in node.elements]
+
+def exec_DictLiteralNode(self, node, env):
+    return {self.execute(k, env): self.execute(v, env) for k, v in node.pairs}
+
+def exec_IndexAccessNode(self, node, env):
+    container = self.execute(node.container, env)
+    index = self.execute(node.index, env)
+    try:
+        return container[index]
+    except (IndexError, KeyError, TypeError):
+        raise RuntimeError(f"Invalid index/key access: {index}")
+
 
 
 class ReturnSignal(Exception):
