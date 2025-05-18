@@ -24,8 +24,8 @@
 Clone the repo and install Ijichi locally:
 
 ```bash
-git clone https://github.com/yourname/ijichi
-cd ijichi
+git clone https://github.com/Starry-Systems/ijichi-lang
+cd ijichi-lang
 pip install -e .
 
 
