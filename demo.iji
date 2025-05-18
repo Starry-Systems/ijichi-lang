@@ -1,0 +1,55 @@
+# Ijichi Language Demo
+
+# Variable declarations
+int a = 10
+float pi = 3.1415
+string name = "Ijichi"
+bool is_ready = true
+
+# Lists and dictionaries
+list nums = [1, 2, 3, 4]
+dict user = {
+    "name": "Alice",
+    "age": 30
+}
+
+# Print values
+print("Welcome to Ijichi!")
+print("Name: " + name)
+print("Pi is approximately " + str(pi))
+
+# Access list/dict
+print("First number: " + str(nums[0]))
+print("User name: " + user["name"])
+
+# Function definition
+func greet(string who)
+    print("Hello, " + who + "!")
+
+greet(name)
+
+# Math and conditions
+func square(int n)
+    return n * n
+
+int squared = square(a)
+print("Square of " + str(a) + " is " + str(squared))
+
+if a > 5
+    print("a is greater than 5")
+else
+    print("a is 5 or less")
+
+# Loops
+int i = 0
+while i < length(nums)
+    print("nums[" + str(i) + "] = " + str(nums[i]))
+    i = i + 1
+
+# Try-catch for error handling
+try
+    int fail = to_int("oops")
+catch string error
+    print("Caught error: " + error)
+
+print("Demo complete!")
